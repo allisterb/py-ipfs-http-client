@@ -188,4 +188,4 @@ class Section(base.SectionBase):
 				connection stream to the given topic.
 		"""
 		args = (topic, discover)
-		return SubChannel(self._client.request('/pubsub/sub', args, stream=True, decoder='json'))
+		return SubChannel(self._client.request('/pubsub/sub', (topic,), stream=True, decoder='json'))
