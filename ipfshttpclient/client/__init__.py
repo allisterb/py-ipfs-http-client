@@ -38,6 +38,7 @@ from . import object
 from . import pin
 from . import pubsub
 from . import repo
+from . import log
 #TODO: `from . import stats`
 from . import swarm
 from . import unstable
@@ -190,7 +191,7 @@ class Client(files.Base, miscellaneous.Base):
 	repo      = base.SectionProperty(repo.Section)
 	swarm     = base.SectionProperty(swarm.Section)
 	unstable  = base.SectionProperty(unstable.Section)
-	
+	log       = base.SectionProperty(log.Section)
 	
 	######################
 	# SESSION MANAGEMENT #
