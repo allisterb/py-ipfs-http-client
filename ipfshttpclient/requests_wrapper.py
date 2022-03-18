@@ -280,3 +280,7 @@ def patch(url, data=None, **kwargs):
 
 def delete(url, **kwargs):
 	return request('delete', url, **kwargs)
+
+def post_file(url, file_data, **kwargs):
+	file = {'file': file_data}
+	return request('post', url, files=file, **kwargs)

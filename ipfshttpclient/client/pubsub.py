@@ -1,5 +1,7 @@
 import typing as ty
 
+from pyipfs.ipfshttpclient import requests_wrapper
+
 from . import base
 
 
@@ -109,7 +111,7 @@ class Section(base.SectionBase):
 		return self._client.request('/pubsub/peers', args, decoder='json', **kwargs)
 	
 	
-	@base.returns_no_item
+	
 	def publish(self, topic: str, payload: str, **kwargs: base.CommonArgs):
 		"""Publish a message to a given pubsub topic
 		
@@ -138,7 +140,8 @@ class Section(base.SectionBase):
 				An empty list
 		"""
 		args = (topic, payload)
-		return self._client.request('/pubsub/pub', args, decoder='json', **kwargs)
+		#return self._client.request('/pubsub/pub', args, decoder='json', **kwargs)
+		return requests_wrapper.post_file(f'http://localhost:5001/api/v0/pubsub/pub?arg={topic}', payload)
 	
 	
 	def subscribe(self, topic: str, discover: bool = False, **kwargs: base.CommonArgs):
